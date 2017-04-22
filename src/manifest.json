@@ -1,0 +1,28 @@
+{
+  "description": "Testing Tool changes the user Agent",
+  "manifest_version": 2,
+  "name": "esFdTestTool",
+  "version": "0.1",
+  "homepage_url": "https://felipe84841.github.io",
+  "author": "Felipe Desiglo",
+  "icons": {
+    "48": "icons/target-48.png"
+  },
+  
+    "permissions": [
+		"webRequest",
+		"webRequestBlocking",		
+		"*://*/*"
+   ],
+   
+    "background": {
+		"scripts": ["background.js"]
+	},
+	
+	"browser_action": {
+		"default_icon": "icons/target.svg",
+		"default_title": "Choose a user agent",
+		"default_popup": "page/page.html"
+   }
+
+}
