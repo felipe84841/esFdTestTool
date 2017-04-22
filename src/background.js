@@ -14,7 +14,7 @@ var headers = [];
 
 function getTargetPages() {
 	return pageType+pageAdress+pageEnd;
-}
+};
 
 /*
 Rewrite the User-Agent header to "ua".
@@ -30,7 +30,7 @@ function rewriteUserAgentHeader(e) {
     }
   }
   return {requestHeaders: e.requestHeaders};
-}
+};
 
 /*
 * Add rewriteUserAgentHeader as a listener to onBeforeSendHeaders,
@@ -38,11 +38,14 @@ function rewriteUserAgentHeader(e) {
 * 
 * Make it "blocking" so we can modify the headers.
 */
-browser.webRequest.onBeforeSendHeaders.addListener(
-  rewriteUserAgentHeader,
-  {urls: [getTargetPages()]},
-  ["blocking", "requestHeaders"]
-);
+function addListenerHeader() {
+	if(browser.webRequest.onBeforeSendHeaders.hasListener(rewriteUserAgentHeader) === true) browser.webRequest.onBeforeSendHeaders.removeListener(rewriteUserAgentHeader);
+	browser.webRequest.onBeforeSendHeaders.addListener(
+	  rewriteUserAgentHeader,
+	  {urls: [getTargetPages()]},
+	  ["blocking", "requestHeaders"]
+	);
+};
 
 function logResponse(responseDetails) {
   console.log(responseDetails.url);
@@ -106,3 +109,7 @@ function setpageAdress(name) {
 function getpageAdress() {
   return pageAdress;
 };
+
+
+// main
+addListenerHeader();
