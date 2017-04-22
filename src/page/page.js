@@ -11,34 +11,32 @@ function RefreshItem(e) {
 };
 
 /* 
-*  Enter point of all ckick events
+*  Combobox select item event
 */
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("agent")) {
-	  
-    //var chosenAgent = e.target.textContent;
+function clickSelectAgent(e) {
 	var chosenAgent = e.target.value;
     var backgroundPage = browser.extension.getBackgroundPage();
 	console.log("Setting the agent to "+chosenAgent);
     backgroundPage.setUaString(chosenAgent);
+};
 
-	
-	/*
-    browser.tabs.executeScript(null, {
-      file: "/content_scripts/beastify.js"
-    });
-	
+/* 
+*  Load page event
+*/
+function LoadPage()
+{
+	console.log("Load page.");
+	var backgroundPage = browser.extension.getBackgroundPage();
+	var ua = backgroundPage.getUaString();
+	document.getElementById('agents').value = ua;
+}
 
-    var gettingActiveTab = browser.tabs.query({active: true, currentWindow: true});
-    gettingActiveTab.then((tabs) => {
-      browser.tabs.sendMessage(tabs[0].id, {beastURL: chosenBeastURL});
-    });
-  }
-  else if (e.target.classList.contains("clear")) {
-    browser.tabs.reload();
-    window.close();
-	*/
-
+/* 
+*  Enter point of all ckick events
+*/
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("agent")) {
+	clickSelectAgent(e);
     return;
   }
   
@@ -50,9 +48,4 @@ document.addEventListener("click", (e) => {
 });
 
 
-//document.addEventListener("onload", (e) => {
-	console.log("Load page.");
-	var backgroundPage = browser.extension.getBackgroundPage();
-	var ua = backgroundPage.getUaString();
-	document.getElementById('agents').value = ua;
-//});
+LoadPage(); // Load Page occurs here

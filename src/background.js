@@ -1,21 +1,17 @@
 "use strict";
 
-//var targetPages = "https://httpbin.org/*";
 var targetPages = "*://*/*";
-//		"http://*",
-//		"https://*"
-//];
 
 /*
-Set UA string to Opera 12
+Set UA string to __default__ ( will not change the agent)
 */
 var ua = "__default__";
-//var ua = "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16";
 
 var headers = [];
 
 /*
 Rewrite the User-Agent header to "ua".
+if it is different from "__default__"
 */
 function rewriteUserAgentHeader(e) {
   headers = e.requestHeaders;
@@ -30,10 +26,10 @@ function rewriteUserAgentHeader(e) {
 }
 
 /*
-Add rewriteUserAgentHeader as a listener to onBeforeSendHeaders,
-only for the target page.
-
-Make it "blocking" so we can modify the headers.
+* Add rewriteUserAgentHeader as a listener to onBeforeSendHeaders,
+* only for the target page.
+* 
+* Make it "blocking" so we can modify the headers.
 */
 browser.webRequest.onBeforeSendHeaders.addListener(
   rewriteUserAgentHeader,
@@ -63,12 +59,15 @@ function getCurrentHeaders() {
 };
 
 /*
-Update ua to a new value, mapped from the uaString parameter.
+* Update ua to a new value
 */
 function setUaString(uaString) {
   ua = uaString;
 };
 
+/*
+* Get ua
+*/
 function getUaString() {
   return ua;
 };
