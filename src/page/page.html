@@ -35,7 +35,32 @@
   </option>
 </select>
 
-<input type="button" class="refresh-button" value="Refresh" /> 
+<div>
+<input type="checkbox" id ="site_check" class="All_site" checked>
+Change in all sites or
+</input>
+
+<select id="site_types" disabled>
+  <option value="*://" class="site_type">
+   http/https/ftp
+  </option>
+  <option value="http://" class="site_type">
+   http://
+  </option> 
+  <option value="https://" class="site_type">
+   https://
+  </option> 
+  <option value="ftp://" class="site_type">
+   ftp://
+  </option> 
+ <select>
+ 
+ <input type="text" id="site_name" class="site_name" value="*" disabled />
+</div>
+
+<!--
+<input type="button" class="refresh-button" value="Refresh" />
+--> 
     
   <script src="page.js"></script>
 </body>

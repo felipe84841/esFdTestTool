@@ -1,6 +1,9 @@
 "use strict";
 
-var targetPages = "*://*/*";
+var targetPageDefault = true;
+var pageType = "*://";
+var pageAdress = "*";
+var pageEnd = "/*";
 
 /*
 Set UA string to __default__ ( will not change the agent)
@@ -8,6 +11,10 @@ Set UA string to __default__ ( will not change the agent)
 var ua = "__default__";
 
 var headers = [];
+
+function getTargetPages() {
+	return pageType+pageAdress+pageEnd;
+}
 
 /*
 Rewrite the User-Agent header to "ua".
@@ -33,7 +40,7 @@ function rewriteUserAgentHeader(e) {
 */
 browser.webRequest.onBeforeSendHeaders.addListener(
   rewriteUserAgentHeader,
-  {urls: [targetPages]},
+  {urls: [getTargetPages()]},
   ["blocking", "requestHeaders"]
 );
 
@@ -50,7 +57,7 @@ function logResponse(responseDetails) {
 
 browser.webRequest.onCompleted.addListener(
   logResponse,
-  {urls: [targetPages]}
+  {urls: [getTargetPages()]}
 );
 
 
@@ -70,4 +77,32 @@ function setUaString(uaString) {
 */
 function getUaString() {
   return ua;
+};
+
+/*
+* Update pageType to a new value
+*/
+function setpageType(type) {
+  pageType = type;
+};
+
+/*
+* Get pageType
+*/
+function getpageType() {
+  return pageType;
+};
+
+/*
+* Update pageAdress to a new value
+*/
+function setpageAdress(name) {
+  pageAdress = name;
+};
+
+/*
+* Get pageAdress
+*/
+function getpageAdress() {
+  return pageAdress;
 };

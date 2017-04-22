@@ -23,12 +23,16 @@ function clickSelectAgent(e) {
 /* 
 *  Load page event
 */
-function LoadPage()
-{
+function LoadPage() {
 	console.log("Load page.");
 	var backgroundPage = browser.extension.getBackgroundPage();
+	// User Agent Load
 	var ua = backgroundPage.getUaString();
 	document.getElementById('agents').value = ua;
+	//
+	var defaultType = backgroundPage.targetPageDefault;
+	console.log("defaultType? "+defaultType);
+	document.getElementById('site_check').checked = defaultType;
 }
 
 /* 
@@ -45,7 +49,36 @@ document.addEventListener("click", (e) => {
 	  return;
   }
   
+   if(e.target.classList.contains("All_site")) {
+	  var backgroundPage = browser.extension.getBackgroundPage();
+	  var here = document.getElementById('site_check').checked;
+	  console.log("Setting site custom to "+ here);
+	  document.getElementById('site_types').disabled = here;
+	  document.getElementById('site_name').disabled = here;
+	  backgroundPage.targetPageDefault = here;
+	  return;
+  }
+  
+  if (e.target.classList.contains("site_type")) {
+	var chosenType = e.target.value;
+    var backgroundPage = browser.extension.getBackgroundPage();
+	console.log("Setting the type to "+chosenType);
+    backgroundPage.setpageType(chosenType);
+	return;
+  }
+  
 });
 
+/*
+document.addEventListener("blur", (e) => {
+  if (e.target.classList.contains("site_name")) {
+	var chosenName = e.target.value;
+    var backgroundPage = browser.extension.getBackgroundPage();
+	console.log("Setting the URL name to "+chosenName);
+    backgroundPage.setpageAdress(chosenName);
+	return;
+  }
+});
+*/
 
 LoadPage(); // Load Page occurs here
