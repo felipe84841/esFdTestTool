@@ -24,7 +24,8 @@ function setDefault() {
 	console.log("Setting site custom to "+ here);
 	document.getElementById('site_types').disabled = here;
 	document.getElementById('site_name').disabled = here;
-	if(here === true) {
+	if(here) {
+		var backgroundPage = browser.extension.getBackgroundPage();
 		var chosenType = "*://";
 		var chosenName = "*";
 		document.getElementById('site_types').value = chosenType;
@@ -33,7 +34,7 @@ function setDefault() {
 		backgroundPage.setpageAdress(chosenName);
 	    //
 	    backgroundPage.addListenerHeader();
-	};
+	}	
 	return here;
 };
 
