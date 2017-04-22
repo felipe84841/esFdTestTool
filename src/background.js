@@ -67,4 +67,8 @@ Update ua to a new value, mapped from the uaString parameter.
 */
 function setUaString(uaString) {
   ua = uaString;
-}
+};
+
+function getUaString() {
+  return ua;
+};

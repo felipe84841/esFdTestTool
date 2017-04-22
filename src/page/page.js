@@ -48,3 +48,11 @@ document.addEventListener("click", (e) => {
   }
   
 });
+
+
+//document.addEventListener("onload", (e) => {
+	console.log("Load page.");
+	var backgroundPage = browser.extension.getBackgroundPage();
+	var ua = backgroundPage.getUaString();
+	document.getElementById('agents').value = ua;
+//});
