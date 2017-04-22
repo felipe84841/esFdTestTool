@@ -9,7 +9,7 @@ var targetPages = "*://*/*";
 /*
 Set UA string to Opera 12
 */
-var ua = "";
+var ua = "__default__";
 //var ua = "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16";
 
 var headers = [];
@@ -19,7 +19,7 @@ Rewrite the User-Agent header to "ua".
 */
 function rewriteUserAgentHeader(e) {
   headers = e.requestHeaders;
-  if(ua === "") return;
+  if(ua === "__default__") return;
   console.log("Rewrite user-agent");
   for (var header of e.requestHeaders) {
     if (header.name.toLowerCase() === "user-agent") {
