@@ -1,2 +1,2 @@
 # esFdTestTool
-Testing WebExtention (Firefox only )
+Testing WebExtention (Firefox only)
