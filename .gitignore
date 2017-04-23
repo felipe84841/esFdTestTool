@@ -1,0 +1,7 @@
+# Zip Files
+*.zip
+*.xpi
+
+# node modules
+node_modules/*
+build/*

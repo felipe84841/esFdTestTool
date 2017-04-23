@@ -6,6 +6,7 @@
   "homepage_url": "https://felipe84841.github.io",
   "author": "Felipe Desiglo",
   "icons": {
+    "32": "icons/target-32.png",
     "48": "icons/target-48.png"
   },
   
@@ -20,7 +21,10 @@
 	},
 	
 	"browser_action": {
-		"default_icon": "icons/target.svg",
+		"default_icon": {
+          "16": "icons/target-16.png",
+          "32": "icons/target-32.png"
+        },
 		"default_title": "Choose a user agent",
 		"default_popup": "page/page.html"
    }
