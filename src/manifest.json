@@ -3,7 +3,7 @@
   "manifest_version": 2,
   "name": "esFdTestTool",
   "version": "0.1",
-  "homepage_url": "https://felipe84841.github.io",
+  "homepage_url": "https://felipe84841.github.io/esFdTestTool/",
   "author": "Felipe Desiglo",
   "icons": {
     "32": "icons/target-32.png",
